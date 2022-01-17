@@ -10,32 +10,36 @@ Valida login valido
     [Documentation]           Valida um login com sucesso
     [Tags]                    LOGIN VALIDO
     Go to                     ${url}/login
-    Realiza login    
-    Valida Login
+    Realiza login             stark  jarvis!
+    Valida Login              Olá, Tony Stark. Você acessou a área logada!
 
 Valida login invalido
     [Documentation]           Valida um login invalido
     [Tags]                    LOGIN INVALIDO
     Go to                     ${url}/login
-    Realiza login invalido                 
-    Valida Login invalido 
+    Realiza login invalido    invalido  invalido             
+    Valida Login invalido     O usuário informado não está cadastrado!
                
 
 *Keywords
 Realiza login
-    Input Text                id:userId  stark
-    Input Text                id:passId  jarvis!
+    [Arguments]               ${user}  ${pass}
+    Input Text                id:userId  ${user}
+    Input Text                id:passId  ${pass} 
     Click Button              Login
 
 Valida Login
-    Wait Until Page Contains  Olá, Tony Stark. Você acessou a área logada!
-    Page Should Contain       Olá, Tony Stark. Você acessou a área logada! 
+    [Arguments]               ${mensagem_sucesso}
+    Wait Until Page Contains  ${mensagem_sucesso}
+    Page Should Contain       ${mensagem_sucesso}
 
 Realiza login invalido
-    Input Text                id:userId  invalido
-    Input Text                id:passId  invalido
+    [Arguments]               ${user_invalido}  ${pass_invalido}
+    Input Text                id:userId  ${user_invalido}
+    Input Text                id:passId  ${pass_invalido} 
     Click Button              Login
 
 Valida Login invalido
-    Wait Until Page Contains  O usuário informado não está cadastrado!
-    Page Should Contain       O usuário informado não está cadastrado! 
+    [Arguments]               ${mensagem_falha}
+    Wait Until Page Contains  ${mensagem_falha}
+    Page Should Contain       ${mensagem_falha} 
